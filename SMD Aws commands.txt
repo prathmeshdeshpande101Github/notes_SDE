@@ -1,0 +1,43 @@
+
+ubuntu@ip-172-31-10-102:~$ sudo apt update
+Hit:1 http://ap-south-1.ec2.archive.ubuntu.com/ubuntu jammy InRelease
+
+
+ubuntu@ip-172-31-10-102:~$ sudo systemctl status docker
+● docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendo
+     Active: active (running) since Sat 2022-11-12 11:10:01 UTC; 22s ag
+TriggeredBy: ● docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 2223 (dockerd)
+      Tasks: 7
+     Memory: 39.9M
+        CPU: 254ms
+     CGroup: /system.slice/docker.service
+             └─2223 /usr/bin/dockerd -H fd:// --containerd=/run/contain
+
+
+ubuntu@ip-172-31-10-102:~$ git clone https://github.com/jagrutisarode/D.git
+Cloning into 'DockerDemo'...
+remote: Enumerating objects: 9, done.
+
+
+
+ubuntu@ip-172-31-10-102:~$ cd DockerDemo
+ubuntu@ip-172-31-10-102:~/DockerDemo$ ls
+Dockerfile  README.md  package.json  profile  server.js
+
+
+ubuntu@ip-172-31-10-102:~/DockerDemo$ sudo docker build -t ietcontainer
+
+ubuntu@ip-172-31-10-102:~/DockerDemo$ sudo docker images
+REPOSITORY        TAG       IMAGE ID       CREATED         SIZE
+
+
+ubuntu@ip-172-31-10-102:~/DockerDemo$ sudo docker run --name webapp -d -p  9000:9000 ietcontainerapp
+7ae7b11aa15b48c80876d57687cd692c9d0e7983924da49f0ca449628119f8a3
+
+
+ubuntu@ip-172-31-10-102:~/DockerDemo$ sudo docker ps
+CONTAINER ID   IMAGE             COMMAND                  CREATED         STATUS         PORTS                                       NAMES
+7ae7b11aa15b   ietcontainerapp   "/bin/sh -c 'node se…"   5 seconds ago   Up 4 seconds   0.0.0.0:9000->9000/tcp, :::9000->9000/tcp   webapp
